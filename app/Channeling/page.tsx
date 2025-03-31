@@ -3,16 +3,12 @@
 import { useState } from 'react';
 
 const doctors = [
-  { name: 'Dr. Smith', image: '/doctor1.png' },
-  { name: 'Dr. Jane', image: '/doctor2.png' },
-  { name: 'Dr. Lee', image: '/doctor3.png' },
-  { name: 'Dr. Sarah', image: '/doctor4.png' },
-  { name: 'Dr. David', image: '/doctor5.png' },
-  { name: 'Dr. Emily', image: '/doctor6.png' },
-  { name: 'Dr. Thomas', image: '/doctor7.png' },
-  { name: 'Dr. Olivia', image: '/doctor8.png' },
-  { name: 'Dr. Daniel', image: '/doctor9.png' },
-  { name: 'Dr. Mia', image: '/doctor10.png' },
+  { name: 'Dr. Smith', image: '/doctor1.png', specialty: 'Cardiologist', experience: '10 years' },
+  { name: 'Dr. Jane', image: '/doctor2.png', specialty: 'Neurologist', experience: '8 years' },
+  { name: 'Dr. Lee', image: '/doctor3.png', specialty: 'Dermatologist', experience: '5 years' },
+  { name: 'Dr. Sarah', image: '/doctor4.png', specialty: 'Pediatrician', experience: '7 years' },
+  { name: 'Dr. David', image: '/doctor5.png', specialty: 'Orthopedist', experience: '12 years' },
+  { name: 'Dr. Emily', image: '/doctor6.png', specialty: 'Gynaecologist', experience: '6 years' }
 ];
 
 const Channeling = () => {
@@ -28,7 +24,7 @@ const Channeling = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+    <div className="max-w-7xl mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
       <h1 className="text-3xl font-semibold text-center text-[#00B6D7] mb-6">Book Your Appointment</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -38,19 +34,27 @@ const Channeling = () => {
         </div>
 
         {/* Doctor Images Section - Click to Select Doctor */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-6 mb-6">
           {doctors.map((doctor) => (
             <div
               key={doctor.name}
-              className={`text-center cursor-pointer p-2 ${selectedDoctor === doctor.name ? 'border-4 border-[#00B6D7]' : ''}`}
+              className={`text-center cursor-pointer p-4 rounded-lg transition-all duration-300 ease-in-out 
+                ${selectedDoctor === doctor.name ? 'border-4 border-[#00B6D7] bg-[#f0faff]' : 'bg-white'}
+                hover:bg-[#f0faff] hover:border-4 hover:border-[#00B6D7]`}
               onClick={() => setSelectedDoctor(doctor.name)}
             >
               <img
                 src={doctor.image}
                 alt={doctor.name}
-                className="max-w-[100%] lg:max-w-[740px] w-full h-auto object-cover object-center mb-2 mx-auto rounded-full"
+                className="max-w-[100%] lg:max-w-[200px] w-full h-auto object-cover object-center mb-2 mx-auto rounded-full"
               />
-              <p className={`${selectedDoctor === doctor.name ? 'text-[#00B6D7]' : ''}`}>{doctor.name}</p>
+              <div className="text-center">
+                <p className={`text-lg font-medium ${selectedDoctor === doctor.name ? 'text-[#00B6D7]' : ''}`}>
+                  {doctor.name}
+                </p>
+                <p className="text-sm text-[#606060]">{doctor.specialty}</p>
+                <p className="text-sm text-[#606060]">{doctor.experience}</p>
+              </div>
             </div>
           ))}
         </div>
