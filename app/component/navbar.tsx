@@ -36,7 +36,7 @@ const Navbar = () => {
               </Link>
             ))}
 
-            <Link href="/login">
+            <Link href="/Registration">
               <button
                 className={`ml-4 px-4 py-2 text-xl text-black rounded-md transition-all duration-300 
                 ${isActive('/login') ? 'bg-[#00B6D7] text-white' : 'hover:text-[#00B6D7] hover:bg-blue-50'} cursor-pointer`}
